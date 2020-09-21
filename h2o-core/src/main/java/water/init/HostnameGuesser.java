@@ -369,4 +369,18 @@ public class HostnameGuesser {
     }
   }
 
+  public static String localAddressToHostname(InetAddress address) {
+    String hostname = address.getHostName();
+    if (! address.getHostAddress().equals(hostname)) {
+      return hostname;
+    }
+    // we don't want to return IP address (because of a security policy of a particular customer, see PUBDEV-5680)
+    hostname = System.getenv("HOSTNAME");
+    if ((hostname == null) || hostname.isEmpty()) {
+      hostname = "localhost";
+    }
+    System.out.println("WARN: Proxy IP address couldn't be translated to a hostname. Using environment variable HOSTNAME='" + hostname + "' as a fallback.");
+    return hostname;
+  }
+  
 }

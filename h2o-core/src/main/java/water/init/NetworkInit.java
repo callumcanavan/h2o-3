@@ -183,7 +183,7 @@ public class NetworkInit {
     final H2OHttpConfig config = new H2OHttpConfig();
     config.jks = args.jks;
     config.jks_pass = args.jks_pass;
-    config.jks_alias = args.jks_alias;
+    config.jks_alias = getJksAlias(args);
     config.loginType = parseLoginType(args);
     configureLoginType(config.loginType, args.login_conf);
     config.login_conf = args.login_conf;
@@ -196,6 +196,13 @@ public class NetworkInit {
     return config;
   }
 
+  private static String getJksAlias(H2O.OptArgs args) {
+    if (args.hostname_as_jks_alias) {
+      return args.ip != null ? args.ip : HostnameGuesser.localAddressToHostname(H2O.SELF_ADDRESS);
+    } else
+      return args.jks_alias;
+  }
+  
   /**
    * @param args commandline arguments to parse
    * @return one of login types - never returns null

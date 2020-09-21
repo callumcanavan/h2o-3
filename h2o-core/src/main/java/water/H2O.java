@@ -221,7 +221,9 @@ final public class H2O {
     public String jks_pass = DEFAULT_JKS_PASS;
 
     public String jks_alias = null;
-    
+
+    public boolean hostname_as_jks_alias = false;    
+
     /** -hash_login enables HashLoginService */
     public boolean hash_login = false;
 
@@ -667,6 +669,9 @@ final public class H2O {
       else if (s.matches("jks_alias")) {
         i = s.incrementAndCheck(i, args);
         trgt.jks_alias = args[i];
+      }
+      else if (s.matches("hostname_as_jks_alias")) {
+        trgt.hostname_as_jks_alias = true;
       }
       else if (s.matches("hash_login")) {
         trgt.hash_login = true;
