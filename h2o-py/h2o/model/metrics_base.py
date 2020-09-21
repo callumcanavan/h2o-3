@@ -1350,7 +1350,7 @@ class H2OBinomialModelMetrics(MetricsBase):
         # check for matplotlib. exit if absent.
         try:
             import matplotlib
-            if server: matplotlib.use('Agg', warn=False)
+            if server: matplotlib.use('Agg')
             import matplotlib.pyplot as plt
         except ImportError:
             print("matplotlib is required for this function!")
