@@ -700,7 +700,7 @@ public abstract class SharedTreeModel<
       sb.ip("public double[] getOrigProjectionArray() { return " + toJavaDoubleArray(_output._orig_projection_array) + "; }").nl();
     }
     if (encoding != CategoricalEncodings.AUTO) {
-      sb.ip("public hex.genmodel.CategoricalEncoding getCategoricalEncoding() { return hex.genmodel.CategoricalEncoding." + 
+      sb.ip("public hex.genmodel.CategoricalEncoding getCategoricalEncoding() { return hex.genmodel.CategoricalEncodings." + 
               encoding.name() + "; }").nl();
     }
     return sb;
